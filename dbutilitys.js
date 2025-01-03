@@ -55,10 +55,8 @@ const insertData = (data) => {
     });
 };
 
-
-
 // Function to retrieve data from the database
-const getData = (date,regid,conditions = {}) => {
+const getData = (date,regid,superid,conditions = {}) => {
     return new Promise((resolve, reject) => {
         const db = createConnection(); // Create a new connection
         db.connect(err => {
@@ -70,7 +68,7 @@ const getData = (date,regid,conditions = {}) => {
 
             let query = `SELECT id,superid, regid, dateoftransaction, latitude,longitude,address FROM  RollCallLiveTracking  
 where dateoftransaction 
-between '${date} 00:00:00' and '${date} 23:59:59' and regid = ${regid}`;
+between '${date} 00:00:00' and '${date} 23:59:59' and regid = ${regid} and superid = ${superid}`;
             console.log(query)
             const conditionKeys = Object.keys(conditions);
             if (conditionKeys.length > 0) {

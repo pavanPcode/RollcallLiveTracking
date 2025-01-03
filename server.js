@@ -27,9 +27,10 @@ app.post('/writeLiveTracking', (req, res) => {
 app.get('/getLiveTracking', (req, res) => {
     const date = req.query.date; // Read the JSON data from the request body
     const regid = req.query.regid
+    const superid = req.query.superid
 
     // Call the insertData function
-    getData(date,regid)
+    getData(date,regid,superid)
         .then(response => {
             res.status(200).json(response); // Send success response
         })
